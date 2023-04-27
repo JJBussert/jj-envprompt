@@ -1,0 +1,22 @@
+{
+  "name": "jj-envprompt",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "set-hello-world": "npm start --prefix=node_modules/jj-envset -- HELLO_WORLD \"echo Hello World!\"",
+    "set-hello-world2": "jj-envset HELLO_WORLD \"echo Hello World!\"",
+    "test-cli": "node ./src/cli.cjs PROMPT_TEST -e .env.test"
+  },
+  "keywords": [],
+  "author": "JJ Bussert",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^9.2.0",
+    "jj-envset": "^1.0.5"
+  }
+}
