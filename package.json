@@ -7,6 +7,9 @@
   "files": [
     "src"
   ],
+  "bin": {
+    "jj-envprompt": "./src/cli.cjs"
+  },
   "scripts": {
     "set-hello-world": "npm start --prefix=node_modules/jj-envset -- HELLO_WORLD \"echo Hello World!\"",
     "set-hello-world2": "jj-envset HELLO_WORLD \"echo Hello World!\"",
