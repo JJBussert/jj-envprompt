@@ -3,23 +3,32 @@
   "version": "1.0.1",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "src/index.js",
   "files": [
     "src"
   ],
   "bin": {
-    "jj-envprompt": "./src/cli.cjs"
+    "jj-envprompt": "./cli.js"
   },
   "scripts": {
-    "set-hello-world": "npm start --prefix=node_modules/jj-envset -- HELLO_WORLD \"echo Hello World!\"",
-    "set-hello-world2": "jj-envset HELLO_WORLD \"echo Hello World!\"",
-    "test-cli": "node ./src/cli.cjs PROMPT_TEST -e .env.test"
+    "test": "vitest",
+    "test-cli": "npm link . && npm run test-cli-help && npm run test-cli-abc && npm run test-cleanup && npm unlink .",
+    "test-cli-help": "jj-envprompt --help",
+    "test-cli-abc": "jj-envprompt abc -e .env.test",
+    "test-cleanup": "rimraf .env.test",
+    "release-patch": "npm version patch && git push --follow-tags && npm publish",
+    "release-minor": "npm version minor && git push --follow-tags && npm publish",
+    "release-major": "npm version major && git push --follow-tags && npm publish"
   },
   "keywords": [],
   "author": "JJ Bussert",
   "license": "MIT",
   "dependencies": {
     "inquirer": "^9.2.0",
-    "jj-envset": "^1.0.5"
+    "jj-envset": "^1.1.1"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.0",
+    "vitest": "^0.31.0"
   }
 }

@@ -1,7 +1,7 @@
 import { envset } from 'jj-envset';
 import inquirer from 'inquirer';
 
-function envprompt(targetKey, envFilePath = '.env') {
+function envprompt(targetKey, verbose, envFilePath) {
     const questions = [
         {
             type: 'input',
@@ -13,7 +13,7 @@ function envprompt(targetKey, envFilePath = '.env') {
     inquirer.prompt(questions)
         .then((answers) => {
             console.log(answers);
-            envset(targetKey, answers[targetKey], envFilePath);
+            envset(targetKey, answers[targetKey], verbose, envFilePath);
         })
         .catch((error) => {
             if (error.isTtyError) {
@@ -22,13 +22,7 @@ function envprompt(targetKey, envFilePath = '.env') {
                 console.log('Something else went wrong');
             }
         });
-    
-}
 
-const isMainModule = import.meta.url === new URL(import.meta.url).pathname;
-  
-if (isMainModule) {
-    envprompt();
 }
 
 export { envprompt };
